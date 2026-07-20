@@ -1,0 +1,36 @@
+{
+  "name": "dentist-app-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Dentist Application",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "db:seed": "node prisma/seed.js",
+    "backup": "node src/scripts/backup.js"
+  },
+  "keywords": [
+    "dentist",
+    "healthcare",
+    "appointments"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.10.0",
+    "archiver": "^8.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.9"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "prisma": "^5.10.0"
+  }
+}

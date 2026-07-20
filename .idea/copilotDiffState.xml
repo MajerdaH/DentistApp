@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/DEPLOYMENT.md">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/DEPLOYMENT.md" />
+              <option name="updatedContent" value="#  Guide de Déploiement Gratuit&#10;&#10;## Option 1: Railway (Le Plus Simple) ⭐ RECOMMANDÉ&#10;&#10;Railway permet de déployer le backend + la base de données gratuitement.&#10;&#10;### Étapes:&#10;&#10;1. **Créer un compte**: https://railway.app (connexion avec GitHub)&#10;&#10;2. **Déployer le Backend**:&#10;   - Cliquez &quot;New Project&quot; → &quot;Deploy from GitHub repo&quot;&#10;   - Sélectionnez votre repo&#10;   - Railway détecte automatiquement Node.js&#10;   - Ajoutez les variables d'environnement:&#10;     ```&#10;     DATABASE_URL=file:./prod.db&#10;     JWT_SECRET=votre-secret-super-securise-pour-production&#10;     NODE_ENV=production&#10;     PORT=3001&#10;     ```&#10;&#10;3. **Déployer le Frontend sur Netlify**:&#10;   - Allez sur https://netlify.com&#10;   - &quot;Add new site&quot; → &quot;Import an existing project&quot;&#10;   - Connectez GitHub, sélectionnez le repo&#10;   - Build command: `cd frontend &amp;&amp; npm install &amp;&amp; npm run build`&#10;   - Publish directory: `frontend/dist`&#10;   - Ajoutez la variable: `VITE_API_URL=https://votre-backend.railway.app/api`&#10;&#10;### Limites gratuites Railway:&#10;- 500 heures/mois d'exécution&#10;- 100 GB de bande passante&#10;- Suffisant pour un petit cabinet!&#10;&#10;---&#10;&#10;## Option 2: Render (Alternative Simple)&#10;&#10;### Backend sur Render:&#10;&#10;1. Créez un compte: https://render.com&#10;&#10;2. &quot;New&quot; → &quot;Web Service&quot;&#10;   - Connectez votre repo GitHub&#10;   - Root Directory: `backend`&#10;   - Build Command: `npm install &amp;&amp; npx prisma generate &amp;&amp; npx prisma db push`&#10;   - Start Command: `node src/index.js`&#10;&#10;3. Variables d'environnement:&#10;   ```&#10;   DATABASE_URL=file:./prod.db&#10;   JWT_SECRET=votre-secret-production&#10;   NODE_ENV=production&#10;   ```&#10;&#10;### Frontend sur Render:&#10;1. &quot;New&quot; → &quot;Static Site&quot;&#10;   - Root Directory: `frontend`&#10;   - Build Command: `npm install &amp;&amp; npm run build`&#10;   - Publish Directory: `dist`&#10;&#10;### Limites gratuites Render:&#10;- Le service &quot;dort&quot; après 15 min d'inactivité (redémarre en ~30 sec)&#10;- 750 heures/mois&#10;&#10;---&#10;&#10;## Option 3: Vercel + Supabase (Plus Robuste)&#10;&#10;Meilleur pour une utilisation intensive, mais plus complexe à configurer.&#10;&#10;### Étapes:&#10;&#10;1. **Créer un projet Supabase** (https://supabase.com):&#10;   - Nouveau projet → Copiez l'URL de la base de données PostgreSQL&#10;   - Modifiez `prisma/schema.prisma`:&#10;     ```prisma&#10;     datasource db {&#10;       provider = &quot;postgresql&quot;&#10;       url      = env(&quot;DATABASE_URL&quot;)&#10;     }&#10;     ```&#10;&#10;2. **Déployer le backend sur Vercel**:&#10;   - Installez Vercel CLI: `npm i -g vercel`&#10;   - Dans le dossier backend: `vercel`&#10;   - Configurez DATABASE_URL avec l'URL Supabase&#10;&#10;3. **Déployer le frontend sur Vercel**:&#10;   - Dans le dossier frontend: `vercel`&#10;   - Configurez VITE_API_URL&#10;&#10;---&#10;&#10;##  Conseils de Sécurité pour la Production&#10;&#10;1. **Changez le JWT_SECRET** - utilisez une chaîne longue et aléatoire&#10;2. **Changez les mots de passe par défaut** immédiatement&#10;3. **Activez HTTPS** (automatique sur Railway/Render/Vercel)&#10;4. **Configurez les emails** pour les rappels et sauvegardes&#10;&#10;---&#10;&#10;##  Après le Déploiement&#10;&#10;1. Accédez à votre URL&#10;2. Connectez-vous avec: `dentiste@cabinet.com` / `admin123`&#10;3. Allez dans Paramètres → Changez le mot de passe&#10;4. Configurez les informations du cabinet&#10;&#10;---&#10;&#10;## Besoin d'aide?&#10;&#10;- Railway docs: https://docs.railway.app&#10;- Render docs: https://render.com/docs&#10;- Vercel docs: https://vercel.com/docs&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend/Procfile">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/backend/Procfile" />
+              <option name="updatedContent" value="web: node src/index.js&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/backend/vercel.json">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/backend/vercel.json" />
+              <option name="updatedContent" value="{&#10;  &quot;version&quot;: 2,&#10;  &quot;builds&quot;: [&#10;    {&#10;      &quot;src&quot;: &quot;src/index.js&quot;,&#10;      &quot;use&quot;: &quot;@vercel/node&quot;&#10;    }&#10;  ],&#10;  &quot;routes&quot;: [&#10;    {&#10;      &quot;src&quot;: &quot;/uploads/(.*)&quot;,&#10;      &quot;dest&quot;: &quot;/uploads/$1&quot;&#10;    },&#10;    {&#10;      &quot;src&quot;: &quot;/api/(.*)&quot;,&#10;      &quot;dest&quot;: &quot;/src/index.js&quot;&#10;    }&#10;  ]&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/.gitignore">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/.gitignore" />
+              <option name="updatedContent" value="node_modules/&#10;dist/&#10;.env&#10;*.local&#10;.DS_Store&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/netlify.toml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/netlify.toml" />
+              <option name="updatedContent" value="[build]&#10;  command = &quot;npm install &amp;&amp; npx prisma generate &amp;&amp; npx prisma db push &amp;&amp; npm run build&quot;&#10;  publish = &quot;dist&quot;&#10;&#10;[[redirects]]&#10;  from = &quot;/*&quot;&#10;  to = &quot;/index.html&quot;&#10;  status = 200&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

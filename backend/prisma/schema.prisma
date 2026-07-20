@@ -1,0 +1,160 @@
+// Prisma schema for Dentist Application
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication (Dentist and Secretary)
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  firstName String
+  lastName  String
+  role      String   @default("SECRETARY") // DENTIST or SECRETARY
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  appointments     Appointment[]
+  treatmentRecords TreatmentRecord[]
+  vacations        Vacation[]
+}
+
+// Patient model
+model Patient {
+  id               String   @id @default(uuid())
+  firstName        String
+  lastName         String
+  dateOfBirth      DateTime?
+  phone            String?
+  email            String?
+  address          String?
+  cnam             Boolean  @default(false)
+  treatingDoctor   String?
+  emergencyContact String?
+  allergies        String?
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  appointments     Appointment[]
+  treatmentRecords TreatmentRecord[]
+  documents        Document[]
+}
+
+// Document model for storing patient files (PDFs, images, scanned papers)
+model Document {
+  id           String   @id @default(uuid())
+  patientId    String
+  fileName     String
+  filePath     String
+  fileType     String
+  description  String?
+  isLegacyScan Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+// Treatment Record model
+model TreatmentRecord {
+  id               String   @id @default(uuid())
+  patientId        String
+  createdById      String
+  date             DateTime
+  treatmentType    String
+  teethInvolved    String?
+  dentalChart      String?
+  chartType        String   @default("ADULT") // ADULT or CHILD
+  notes            String?
+  cost             Float?
+  amountPaid       Float?
+  remainingBalance Float?
+  freeText         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  createdBy User    @relation(fields: [createdById], references: [id])
+}
+
+// Appointment model
+model Appointment {
+  id              String   @id @default(uuid())
+  patientId       String
+  createdById     String
+  startTime       DateTime
+  endTime         DateTime
+  duration        Int
+  appointmentType String
+  notes           String?
+  status          String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED, NO_SHOW
+  color           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  createdBy User    @relation(fields: [createdById], references: [id])
+}
+
+// Predefined treatment types
+model TreatmentType {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  isCustom  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Appointment types
+model AppointmentType {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  color     String?
+  isCustom  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Vacation/absence management
+model Vacation {
+  id        String   @id @default(uuid())
+  userId    String
+  startDate DateTime
+  endDate   DateTime
+  reason    String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Cabinet settings
+model CabinetSettings {
+  id           String  @id @default(uuid())
+  cabinetName  String?
+  address      String?
+  phone        String?
+  email        String?
+  workingHours String?
+  workingDays  String?
+  logoPath     String?
+}
+
+// Backup log
+model BackupLog {
+  id        String   @id @default(uuid())
+  fileName  String
+  filePath  String
+  size      Int
+  createdAt DateTime @default(now())
+}
+

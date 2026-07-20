@@ -1,0 +1,9 @@
+[build]
+  command = "npm install && npx prisma generate && npx prisma db push && npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

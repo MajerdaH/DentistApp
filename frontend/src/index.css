@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Custom theme with CSS variables */
+@theme {
+  --color-dental-50: #eff6ff;
+  --color-dental-100: #dbeafe;
+  --color-dental-200: #bfdbfe;
+  --color-dental-300: #93c5fd;
+  --color-dental-400: #60a5fa;
+  --color-dental-500: #3b82f6;
+  --color-dental-600: #2563eb;
+  --color-dental-700: #1d4ed8;
+  --color-dental-800: #1e40af;
+  --color-dental-900: #1e3a8a;
+  --color-dental-950: #172554;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  @apply bg-gray-50 text-gray-900 antialiased;
+}
+
+/* React Big Calendar custom styles */
+.rbc-calendar {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.rbc-header {
+  @apply bg-dental-50 py-3 font-semibold text-dental-700 border-dental-200;
+}
+
+.rbc-today {
+  @apply bg-dental-50;
+}
+
+.rbc-event {
+  @apply bg-dental-500 rounded-md border-none;
+}
+
+.rbc-event:focus {
+  @apply outline-none ring-2 ring-dental-300;
+}
+
+.rbc-selected {
+  @apply bg-dental-600;
+}
+
+.rbc-toolbar button {
+  @apply px-4 py-2 rounded-lg text-sm font-medium transition-colors;
+}
+
+.rbc-toolbar button:hover {
+  @apply bg-dental-100 text-dental-700;
+}
+
+.rbc-toolbar button.rbc-active {
+  @apply bg-dental-500 text-white;
+}
+
+.rbc-time-slot {
+  @apply border-gray-100;
+}
+
+.rbc-timeslot-group {
+  @apply border-gray-200;
+}
+
+.rbc-time-header-content {
+  @apply border-gray-200;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  @apply border-t border-gray-100;
+}
+
+/* Button base styles */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-primary {
+  @apply bg-dental-500 text-white hover:bg-dental-600 focus:ring-dental-500;
+}
+
+.btn-secondary {
+  @apply bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-500;
+}
+
+.btn-danger {
+  @apply bg-red-500 text-white hover:bg-red-600 focus:ring-red-500;
+}
+
+.btn-success {
+  @apply bg-green-500 text-white hover:bg-green-600 focus:ring-green-500;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-100;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-gray-100;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl shadow-xl max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto;
+}
+
+/* Dental chart styles */
+.tooth {
+  @apply cursor-pointer transition-all duration-200;
+}
+
+.tooth:hover {
+  @apply opacity-80;
+}
+
+.tooth-selected {
+  fill: var(--color-dental-500);
+  stroke: var(--color-dental-700);
+}
+
+.tooth-treated {
+  @apply fill-green-400 stroke-green-600;
+}
+
+.tooth-problem {
+  @apply fill-red-400 stroke-red-600;
+}
+
+/* Loading spinner */
+.spinner {
+  @apply animate-spin rounded-full border-4 border-gray-200 border-t-dental-500;
+}
+
+/* Toast notifications */
+.toast {
+  @apply fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50;
+  animation: slide-up 0.3s ease-out;
+}
+
+.toast-success {
+  @apply bg-green-500 text-white;
+}
+
+.toast-error {
+  @apply bg-red-500 text-white;
+}
+
+.toast-info {
+  @apply bg-dental-500 text-white;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Sidebar styles */
+.sidebar-link {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-dental-50 hover:text-dental-600 transition-colors;
+}
+
+.sidebar-link.active {
+  @apply bg-dental-100 text-dental-700 font-medium;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-blue {
+  @apply bg-dental-100 text-dental-800;
+}
+
+.badge-green {
+  @apply bg-green-100 text-green-800;
+}
+
+.badge-red {
+  @apply bg-red-100 text-red-800;
+}
+
+.badge-yellow {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.badge-gray {
+  @apply bg-gray-100 text-gray-800;
+}
+
+/* Status colors */
+.status-scheduled {
+  @apply text-dental-600 bg-dental-50;
+}
+
+.status-completed {
+  @apply text-green-600 bg-green-50;
+}
+
+.status-cancelled {
+  @apply text-red-600 bg-red-50;
+}
+
+.status-no-show {
+  @apply text-yellow-600 bg-yellow-50;
+}
+
+/* Responsive table */
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
+.table-responsive table {
+  @apply min-w-full divide-y divide-gray-200;
+}
+
+.table-responsive th {
+  @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
+}
+
+.table-responsive td {
+  @apply px-6 py-4 whitespace-nowrap text-sm;
+}
+
