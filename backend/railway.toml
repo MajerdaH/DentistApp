@@ -1,10 +1,13 @@
 [build]
 builder = "nixpacks"
+
 [build.nixpacks]
-pkgs = ["nodejs_18"]
+pkgs = ["nodejs_20"]
+
 [deploy]
 startCommand = "npx prisma generate && npx prisma db push && node src/index.js"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 100
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
+
