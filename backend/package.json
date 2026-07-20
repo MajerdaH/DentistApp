@@ -3,24 +3,26 @@
   "version": "1.0.0",
   "description": "Backend API for Dentist Application",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "build": "npx prisma generate",
+    "postinstall": "npx prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate",
+    "db:push": "prisma db push",
     "db:seed": "node prisma/seed.js",
     "backup": "node src/scripts/backup.js"
   },
-  "keywords": [
-    "dentist",
-    "healthcare",
-    "appointments"
-  ],
+  "keywords": ["dentist", "healthcare", "appointments"],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.10.0",
-    "archiver": "^8.0.0",
+    "archiver": "^7.0.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -34,3 +36,4 @@
     "prisma": "^5.10.0"
   }
 }
+
