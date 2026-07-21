@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { appointmentService, patientService } from '../services';
 import type { Patient, AppointmentType } from '../types';
 import { useToast } from '../contexts/ToastContext';
+import { getErrorMessage } from '../utils/errorHandler';
 import { format } from 'date-fns';
 import {
   ArrowLeft,
@@ -113,7 +114,7 @@ export default function AppointmentFormPage() {
       showToast('Rendez-vous créé avec succès', 'success');
       navigate('/calendar');
     } catch (error: any) {
-      const message = error.response?.data?.error || 'Erreur lors de la création';
+      const message = getErrorMessage(error, 'Erreur lors de la création');
       showToast(message, 'error');
     } finally {
       setIsLoading(false);

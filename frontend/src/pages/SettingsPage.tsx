@@ -3,6 +3,7 @@ import { settingsService, backupService, authService, vacationService } from '..
 import type { CabinetSettings, User, Vacation } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
+import { getErrorMessage } from '../utils/errorHandler';
 import { format } from 'date-fns';
 import {
   Save,
@@ -90,7 +91,7 @@ export default function SettingsPage() {
       const usersData = await authService.getUsers();
       setUsers(usersData);
     } catch (error: any) {
-      const message = error.response?.data?.error || 'Erreur lors de la création';
+      const message = getErrorMessage(error, 'Erreur lors de la création');
       showToast(message, 'error');
     }
   };
@@ -114,7 +115,7 @@ export default function SettingsPage() {
       const vacationsData = await vacationService.getAll();
       setVacations(vacationsData);
     } catch (error: any) {
-      const message = error.response?.data?.error || 'Erreur lors de la création';
+      const message = getErrorMessage(error, 'Erreur lors de la création');
       showToast(message, 'error');
     }
   };

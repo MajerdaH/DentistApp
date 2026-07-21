@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
+import { getErrorMessage } from '../utils/errorHandler';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 
 // Tooth Logo SVG
@@ -42,7 +43,7 @@ export default function LoginPage() {
       showToast('Connexion réussie!', 'success');
       navigate('/');
     } catch (error: any) {
-      const message = error.response?.data?.error || 'Erreur de connexion';
+      const message = getErrorMessage(error, 'Erreur de connexion');
       showToast(message, 'error');
     } finally {
       setIsLoading(false);

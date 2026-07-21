@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { patientService } from '../services';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
+import { getErrorMessage } from '../utils/errorHandler';
 import { ArrowLeft, Save, User } from 'lucide-react';
 
 export default function PatientFormPage() {
@@ -42,7 +43,7 @@ export default function PatientFormPage() {
       showToast('Patient créé avec succès', 'success');
       navigate(`/patients/${patient.id}`);
     } catch (error: any) {
-      const message = error.response?.data?.error || 'Erreur lors de la création';
+      const message = getErrorMessage(error, 'Erreur lors de la création');
       showToast(message, 'error');
     } finally {
       setIsLoading(false);
