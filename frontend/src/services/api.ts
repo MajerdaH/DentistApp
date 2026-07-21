@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+function resolveApiUrl(): string {
+  const raw = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+  // Remove trailing slash(es)
+  const trimmed = raw.replace(/\/+$/, '');
+  // Ensure it ends with /api
+  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+}
+
+const API_URL = resolveApiUrl();
 
 const api = axios.create({
   baseURL: API_URL,
