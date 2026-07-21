@@ -10,5 +10,5 @@ cmds = ["npm ci || npm install"]
 cmds = ["npx prisma generate"]
 
 [start]
-cmd = "npx prisma db push && node src/index.js"
+cmd = "npx prisma db push && node prisma/seed.js && node src/index.js"
 
