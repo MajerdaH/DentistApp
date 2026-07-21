@@ -1,16 +1,10 @@
 providers = ["node"]
 
-[variables]
-NODE_ENV = "development"
-
 [phases.setup]
 nixPkgs = ["nodejs_20", "npm-9_x"]
 
 [phases.install]
-cmds = [
-  "rm -rf node_modules package-lock.json",
-  "npm install --include=dev --include=optional"
-]
+cmds = ["npm install"]
 
 [phases.build]
 cmds = ["npm run build"]
