@@ -5,11 +5,9 @@ import { useToast } from '../contexts/ToastContext';
 import { getErrorMessage } from '../utils/errorHandler';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 
-// Tooth Logo SVG
+// Tooth Logo
 const ToothLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-16 h-16" fill="currentColor">
-    <path d="M50 5C35 5 25 15 20 30C15 45 15 60 20 75C25 90 35 95 50 95C65 95 75 90 80 75C85 60 85 45 80 30C75 15 65 5 50 5ZM50 15C60 15 67 22 70 35C73 48 73 58 70 70C67 82 60 85 50 85C40 85 33 82 30 70C27 58 27 48 30 35C33 22 40 15 50 15Z" />
-  </svg>
+  <img src="/tooth.svg" alt="Cabinet Dentaire" className="w-16 h-16" />
 );
 
 export default function LoginPage() {
@@ -55,7 +53,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo and Title */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-dental-500 text-white mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white mb-4 shadow-lg ring-4 ring-dental-100">
             <ToothLogo />
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Cabinet Dentaire</h1>

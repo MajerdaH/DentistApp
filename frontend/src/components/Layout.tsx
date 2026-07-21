@@ -13,11 +13,9 @@ import {
   User,
 } from 'lucide-react';
 
-// Tooth Logo SVG
+// Tooth Logo
 const ToothLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-10 h-10" fill="currentColor">
-    <path d="M50 5C35 5 25 15 20 30C15 45 15 60 20 75C25 90 35 95 50 95C65 95 75 90 80 75C85 60 85 45 80 30C75 15 65 5 50 5ZM50 15C60 15 67 22 70 35C73 48 73 58 70 70C67 82 60 85 50 85C40 85 33 82 30 70C27 58 27 48 30 35C33 22 40 15 50 15Z" />
-  </svg>
+  <img src="/tooth.svg" alt="Cabinet Dentaire" className="w-10 h-10" />
 );
 
 export default function Layout() {
@@ -57,9 +55,7 @@ export default function Layout() {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100">
-            <div className="text-dental-500">
-              <ToothLogo />
-            </div>
+            <ToothLogo />
             <div>
               <h1 className="text-lg font-bold text-gray-900">Cabinet Dentaire</h1>
               <p className="text-xs text-gray-500">Gestion des patients</p>
