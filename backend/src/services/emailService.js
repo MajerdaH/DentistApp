@@ -59,14 +59,12 @@ const sendBackupEmail = async () => {
 
       archive.pipe(output);
 
-      const dbPath = path.join(__dirname, '../../prisma/dev.db');
       if (fs.existsSync(dbPath)) {
         archive.file(dbPath, { name: 'database.db' });
       }
 
       if (fs.existsSync(uploadDir)) {
         archive.directory(uploadDir, 'uploads');
-        archive.directory(uploadsPath, 'uploads');
       }
 
       archive.finalize();

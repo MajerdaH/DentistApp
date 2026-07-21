@@ -17,6 +17,7 @@ import QuickMigrationPage from './pages/QuickMigrationPage';
 import CalendarPage from './pages/CalendarPage';
 import AppointmentFormPage from './pages/AppointmentFormPage';
 import AppointmentsPage from './pages/AppointmentsPage';
+import TreatmentFormPage from './pages/TreatmentFormPage';
 import SettingsPage from './pages/SettingsPage';
 
 const queryClient = new QueryClient({
@@ -93,6 +94,24 @@ function AppRoutes() {
         <Route path="appointments" element={<AppointmentsPage />} />
         <Route path="appointments/new" element={<AppointmentFormPage />} />
         <Route path="appointments/:id" element={<AppointmentFormPage />} />
+        {/* Treatments - Dentist only */}
+        <Route
+          path="treatments/new"
+          element={
+            <DentistRoute>
+              <TreatmentFormPage />
+            </DentistRoute>
+          }
+        />
+        <Route
+          path="treatments/:id"
+          element={
+            <DentistRoute>
+              <TreatmentFormPage />
+            </DentistRoute>
+          }
+        />
+
 
         {/* Settings - Dentist only */}
         <Route
