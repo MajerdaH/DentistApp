@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/frontend/netlify.toml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/netlify.toml" />
+              <option name="originalContent" value="[build]&#10;  command = &quot;npm install &amp;&amp; npx prisma generate &amp;&amp; npx prisma db push &amp;&amp; npm run build&quot;&#10;  publish = &quot;dist&quot;&#10;&#10;[[redirects]]&#10;  from = &quot;/*&quot;&#10;  to = &quot;/index.html&quot;&#10;  status = 200&#10;&#10;" />
+              <option name="updatedContent" value="[build]&#10;  command = &quot;npm install &amp;&amp; npm run build&quot;&#10;  publish = &quot;dist&quot;&#10;&#10;[[redirects]]&#10;  from = &quot;/*&quot;&#10;  to = &quot;/index.html&quot;&#10;  status = 200&#10;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
