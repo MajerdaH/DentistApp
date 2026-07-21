@@ -1,5 +1,7 @@
 [build]
 builder = "nixpacks"
+rootDir = "backend"
+watchPatterns = ["backend/**"]
 
 [build.nixpacks]
 pkgs = ["nodejs_20", "npm-9_x"]
