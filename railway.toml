@@ -1,13 +1,9 @@
 [build]
 builder = "nixpacks"
-rootDir = "backend"
 watchPatterns = ["backend/**"]
 
-[build.nixpacks]
-pkgs = ["nodejs_20", "npm-9_x"]
-
 [deploy]
-startCommand = "npx prisma generate && npx prisma db push && node src/index.js"
+startCommand = "cd backend && npx prisma generate && npx prisma db push && node src/index.js"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 100
 restartPolicyType = "on_failure"
