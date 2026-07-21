@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const archiver = require('archiver');
 const { PrismaClient } = require('@prisma/client');
+const { uploadDir, dbPath } = require('../config/paths');
 
 const prisma = new PrismaClient();
 
@@ -58,15 +59,13 @@ const sendBackupEmail = async () => {
 
       archive.pipe(output);
 
-      // Add database
       const dbPath = path.join(__dirname, '../../prisma/dev.db');
       if (fs.existsSync(dbPath)) {
         archive.file(dbPath, { name: 'database.db' });
       }
 
-      // Add uploads
-      const uploadsPath = path.join(__dirname, '../../uploads');
-      if (fs.existsSync(uploadsPath)) {
+      if (fs.existsSync(uploadDir)) {
+        archive.directory(uploadDir, 'uploads');
         archive.directory(uploadsPath, 'uploads');
       }
 

@@ -5,6 +5,7 @@ const archiver = require('archiver');
 const { PrismaClient } = require('@prisma/client');
 const { authenticate, requireDentist } = require('../middleware/auth');
 const { sendBackupEmail } = require('../services/emailService');
+const { uploadDir, dbPath } = require('../config/paths');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -51,13 +52,13 @@ router.get('/download', authenticate, requireDentist, async (req, res) => {
 
     archive.pipe(output);
 
-    // Add database file
-    const dbPath = path.join(__dirname, '../../prisma/dev.db');
-    if (fs.existsSync(dbPath)) {
+    const dbFilePath = dbPath;
+    if (fs.existsSync(dbFilePath)) {
+      archive.file(dbFilePath, { name: 'database.db' });
       archive.file(dbPath, { name: 'database.db' });
     }
 
-    // Add uploads folder
+    const uploadsPath = uploadDir;
     const uploadsPath = path.join(__dirname, '../../uploads');
     if (fs.existsSync(uploadsPath)) {
       archive.directory(uploadsPath, 'uploads');

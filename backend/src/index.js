@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const cron = require('node-cron');
+const { uploadDir } = require('./config/paths');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -41,7 +42,7 @@ app.use(cors({
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Serve uploaded files
+app.use('/uploads', express.static(uploadDir));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // API Routes
@@ -82,7 +83,7 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🦷 Cabinet Dentaire API running on port ${PORT}`);
+  console.log(`📁 Uploads directory: ${uploadDir}`);
   console.log(`📁 Uploads directory: ${path.join(__dirname, '../uploads')}`);
 });
 
