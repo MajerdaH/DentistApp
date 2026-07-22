@@ -10,6 +10,11 @@ function resolveApiUrl(): string {
 
 const API_URL = resolveApiUrl();
 
+// Server root URL (without /api suffix), used for static file URLs like /uploads/...
+export const SERVER_URL = API_URL.replace(/\/api$/, '');
+
+export { API_URL };
+
 const api = axios.create({
   baseURL: API_URL,
   headers: {

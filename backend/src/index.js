@@ -43,7 +43,6 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 app.use('/uploads', express.static(uploadDir));
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -84,7 +83,6 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
   console.log(`📁 Uploads directory: ${uploadDir}`);
-  console.log(`📁 Uploads directory: ${path.join(__dirname, '../uploads')}`);
 });
 
 module.exports = app;

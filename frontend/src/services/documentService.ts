@@ -1,4 +1,4 @@
-import api from './api';
+import api, { API_URL, SERVER_URL } from './api';
 import type { Document } from '../types';
 
 export const documentService = {
@@ -56,13 +56,12 @@ export const documentService = {
   },
 
   getDownloadUrl(id: string): string {
-    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
-    return `${baseUrl}/documents/${id}/download`;
+    return `${API_URL}/documents/${id}/download`;
   },
 
   getFileUrl(filePath: string): string {
-    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-    return `${baseUrl}${filePath}`;
+    // filePath from backend looks like "/uploads/xxx/file.png"
+    return `${SERVER_URL}${filePath}`;
   },
 };
 
