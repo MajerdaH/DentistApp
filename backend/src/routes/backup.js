@@ -55,11 +55,9 @@ router.get('/download', authenticate, requireDentist, async (req, res) => {
     const dbFilePath = dbPath;
     if (fs.existsSync(dbFilePath)) {
       archive.file(dbFilePath, { name: 'database.db' });
-      archive.file(dbPath, { name: 'database.db' });
     }
 
     const uploadsPath = uploadDir;
-    const uploadsPath = path.join(__dirname, '../../uploads');
     if (fs.existsSync(uploadsPath)) {
       archive.directory(uploadsPath, 'uploads');
     }

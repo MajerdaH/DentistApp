@@ -82,7 +82,8 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`📁 Uploads directory: ${uploadDir}`);
+  console.log(`🦷 Cabinet Dentaire API running on port ${PORT}`);
+  console.log(`📁 Uploads directory: ${path.join(__dirname, '../uploads')}`);
 });
 
 module.exports = app;
